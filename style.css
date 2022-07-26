@@ -1,0 +1,69 @@
+body {
+  background-image: url(./cool-background.png);
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+header {
+  padding: 5px 0px 0px 25px;
+}
+
+.h1-hdr {
+  text-align: center;
+  float: none;
+  width: 98%;
+  margin-top: 2%;
+  margin-bottom: 5%;
+  background-color: lightcyan;
+  border: 3px solid black;
+  border-radius: 15px;
+}
+
+.float-container {
+  display: flex;
+}
+
+.float-child-1,
+.float-child-2 {
+  flex: 1%;
+  background-color: lightcyan;
+  border: 3px solid black;
+  border-radius: 5px;
+}
+
+.float-child-1 {
+  margin: 0px 20px 0px 25px;
+  width: 65%;
+  max-width: 65%;
+}
+
+.float-child-2 {
+  margin-right: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  max-width: 35%;
+}
+
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  background: white;
+
+  left: -10px;
+  width: 10px;
+  top: 0;
+  bottom: 0;
+}
+
+button:hover::before {
+  left: calc(100% + 10px);
+  transition: left 900ms;
+}
