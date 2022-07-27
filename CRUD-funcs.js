@@ -1,4 +1,3 @@
-
 //Heroku API URL
 const URL = 'https://todo-app-api-dd.herokuapp.com/toDo'
 
@@ -70,6 +69,4 @@ export function handleTaskDelete() {
     fetch(URL + `/${itemNumber}`, {
         method: 'DELETE'
     });
-
-    return mockDBDelete;
 }
