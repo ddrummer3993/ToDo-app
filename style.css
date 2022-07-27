@@ -51,6 +51,9 @@ h4 {
   width: 35%;
   max-width: 35%;
   align-items: stretch;
+  min-height: 50px;
+  height: 100%;
+  overflow: auto;
 }
 
 button {
@@ -72,4 +75,8 @@ button::before {
 button:hover::before {
   left: calc(100% + 10px);
   transition: left 900ms;
+}
+
+input {
+  max-width: fit-content;
 }
