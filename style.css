@@ -15,7 +15,7 @@ header {
   float: none;
   width: 98%;
   margin-top: 2%;
-  margin-bottom: 5%;
+  margin-bottom: 0.5rem;
   background-color: lightcyan;
   border: 3px solid black;
   border-radius: 15px;
@@ -61,9 +61,46 @@ h4 {
   justify-content: center;
 }
 
+#weatherAndIcon {
+  display: flex;
+  text-align: center;
+}
+
+#tempAndPrecip {
+  text-align: center;
+}
+
+h4 {
+  margin-top: 1.5rem;
+}
+
+h5 {
+  text-align: center;
+  margin: 2rem 1rem 1rem 0rem;
+  font-size: 16pt;
+}
+
+.icon {
+  align-content: center;
+}
+
 .weather-pic {
+  width: 6rem;
+  margin-top: 1rem;
   max-width: 100px;
   max-height: 100px;
+}
+
+.taskCard {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.btnContainer {
+  float: right;
+  margin-left: 10rem;
 }
 
 button {
