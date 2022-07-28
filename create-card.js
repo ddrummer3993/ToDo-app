@@ -40,7 +40,7 @@ export function createTask(taskObj) {
   const li = document.createElement("div");
   li.setAttribute('id', taskObj._id);
   const inputValue = taskObj.task;
-  const sym = document.createElement("div");
+  const sym = document.createElement("span");
   sym.innerText = inputValue;
   li.appendChild(sym);
   if (inputValue === "") {
@@ -86,8 +86,6 @@ function handleEditButton(eventObj) {
   let taskID = eventObj.target.parentElement.id;
   console.log(taskID);
   handleTaskEdit(taskID, edit);
-  console.log(eventObj.target.parentElement.childNodes);
-  //edit DOM list
-  //console.log(eventObj.target.parentElement.innerText);
+  eventObj.target.parentElement.children[0].innerText = edit;
 };
 
