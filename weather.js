@@ -14,7 +14,7 @@ async function showPosition(position) {
   let long = position.coords.longitude;
   let apiKey = 'CAfnhJlUtFmcRbpFncqrzchNwxj2rnuo';
   //let apiKey = "vCS2tUBXUeIPaCbMP6G3viGR2TUnsOEY";
-  const api = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${lat},${long}`;
+  const api = `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${lat},${long}`;
   //  x.innerHTML = "Latisdsdtude: " + position.coords.latitude +
   //  "<br>Longitude: " + position.coords.longitude + "<br>endpoint:" + api;
 
@@ -36,7 +36,7 @@ async function showPosition(position) {
 async function getInfo(key) {
    let apiKey = 'CAfnhJlUtFmcRbpFncqrzchNwxj2rnuo';
  // let apiKey = "vCS2tUBXUeIPaCbMP6G3viGR2TUnsOEY";
-  const weatherApi = `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${apiKey}`;
+  const weatherApi = `https://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${apiKey}`;
 
   fetch(weatherApi)
     .then((response) => response.json()) /* turn data into json*/
