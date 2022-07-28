@@ -33,14 +33,15 @@ list.addEventListener(
 );
 */
 
-import { handleTaskDelete, handleTaskEdit } from "./CRUD-funcs.js";
+import { handleDOMLoad, handleTaskDelete, handleTaskEdit } from "./CRUD-funcs.js";
 
 // When the "Add To List" button is clicked, a new list item is populated on the left container
 export function createTask(taskObj) {
-  const li = document.createElement("li");
+  const li = document.createElement("div");
   li.setAttribute('id', taskObj._id);
   const inputValue = taskObj.task;
-  const sym = document.createTextNode(inputValue);
+  const sym = document.createElement("span");
+  sym.innerText = inputValue;
   li.appendChild(sym);
   if (inputValue === "") {
     alert("Nothing has been added. Check your entry.");
@@ -85,8 +86,6 @@ function handleEditButton(eventObj) {
   let taskID = eventObj.target.parentElement.id;
   console.log(taskID);
   handleTaskEdit(taskID, edit);
-
-  //edit DOM list
-  console.log(eventObj.target.parentElement.innerText);
+  eventObj.target.parentElement.children[0].innerText = edit;
 };
 
