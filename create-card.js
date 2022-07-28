@@ -50,7 +50,7 @@ function handleDOMDelete(eventObj) {
 
   //remove from list
   const removeButton = eventObj.target;
-  const container = removeButton.parentElement;
+  const container = removeButton.parentElement.parentElement;
   container.remove();
 }
 
@@ -61,5 +61,5 @@ function handleEditButton(eventObj) {
   let taskID = eventObj.target.parentElement.id;
   console.log(taskID);
   handleTaskEdit(taskID, edit);
-  eventObj.target.parentElement.children[0].innerText = edit;
+  eventObj.target.parentElement.parentElement.children[0].innerText = edit;
 }

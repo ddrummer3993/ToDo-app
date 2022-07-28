@@ -12,8 +12,8 @@ export function getLocation() {
 async function showPosition(position) {
   let lat = position.coords.latitude;
   let long = position.coords.longitude;
-
-  let apiKey = "vCS2tUBXUeIPaCbMP6G3viGR2TUnsOEY";
+  let apiKey = 'CAfnhJlUtFmcRbpFncqrzchNwxj2rnuo';
+  //let apiKey = "vCS2tUBXUeIPaCbMP6G3viGR2TUnsOEY";
   const api = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${lat},${long}`;
   //  x.innerHTML = "Latisdsdtude: " + position.coords.latitude +
   //  "<br>Longitude: " + position.coords.longitude + "<br>endpoint:" + api;
@@ -34,8 +34,8 @@ async function showPosition(position) {
 }
 
 async function getInfo(key) {
-  // let apiKey = 'CAfnhJlUtFmcRbpFncqrzchNwxj2rnuo';
-  let apiKey = "vCS2tUBXUeIPaCbMP6G3viGR2TUnsOEY";
+   let apiKey = 'CAfnhJlUtFmcRbpFncqrzchNwxj2rnuo';
+ // let apiKey = "vCS2tUBXUeIPaCbMP6G3viGR2TUnsOEY";
   const weatherApi = `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${apiKey}`;
 
   fetch(weatherApi)
@@ -63,7 +63,8 @@ function appendWeather(weatherObj) {
 
   let cityState = document.createElement("h4");
   cityState.innerText = `${weatherObj.city}, ${weatherObj.state}`;
-  dateTimeContainer.appendChild(cityState);
+  let clock = document.getElementById("clock");
+  dateTimeContainer.insertBefore(cityState, clock);
 
   const weatherIconNum = parseInt(weatherObj.weatherIcon);
   let weatherPic = document.createElement("img");
