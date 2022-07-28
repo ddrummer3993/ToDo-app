@@ -1,38 +1,3 @@
-/*
-// Creating a "delete" button and appending it to each list item
-const myDelBtn = document.getElementsByTagName("li");
-var i;
-for (i = 0; i < myDelBtn.length; i++) {
-  let span = document.createElement("span");
-  let txt = document.createTextNode("\u2715");
-  span.className = "delete";
-  span.appendChild(txt);
-  myDelBtn[i].appendChild(span);
-}
-
-// Clicking the delete button to get rid of the current list item
-const delItem = document.getElementsByClassName("delete");
-var i;
-for (i = 0; i < delItem.length; i++) {
-  delItem[i].onclick = function () {
-    const div = this.parentElement;
-    div.style.display = "none";
-  };
-}
-
-// Adding a "checked" symbol when a ToDo is clicked
-const list = document.querySelector("ul");
-list.addEventListener(
-  "click",
-  function (evtObj) {
-    if (evtObj.target.tagName === "li") {
-      evtObj.target.classList.toggle("checked");
-    }
-  },
-  false
-);
-*/
-
 import { handleDOMLoad, handleTaskDelete, handleTaskEdit } from "./CRUD-funcs.js";
 
 // When the "Add To List" button is clicked, a new list item is populated on the left container

@@ -1,11 +1,8 @@
+const res = {};
 
-var x = document.getElementById("demo");
-var res = {};
-
-
-
-function getLocation() {
+export function getLocation() {
     if (navigator.geolocation) {
+      console.log(navigator.geolocation);
       navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
       x.innerHTML = "Geolocation is not supported by this browser.";
@@ -33,7 +30,7 @@ function getLocation() {
 
       res['city'] = data.LocalizedName;
       res['state'] = data.AdministrativeArea.ID;
-      res['parentCity'] = data.ParentCity.EnglishName;
+      //res['parentCity'] = data.ParentCity.EnglishName;
 
    });
    
@@ -57,11 +54,52 @@ function getLocation() {
       res['UVIndexText'] = data[0].UVIndexText;
       res['RelativeHumidity'] = data[0].RelativeHumidity;  
       res['weatherIcon'] = data[0].WeatherIcon;
-      x.innerText = JSON.stringify(res);
+      appendWeather(res);
       return res;
     });
 
   }
 
-getLocation();
 
+  function appendWeather(weatherObj) {
+    const weatherContainer = document.querySelector('#weather-container');
+    const weatherAndIcon = document.querySelector('#weatherAndIcon');
+    const tempAndPrecip = document.querySelector('#tempAndPrecip');
+    const dateTimeContainer = document.querySelector('#date-time-container');
+    console.log(weatherObj);
+
+    let cityState = document.createElement('h4');
+    cityState.innerText = `${weatherObj.city}, ${weatherObj.state}`;
+    dateTimeContainer.appendChild(cityState);
+
+    const weatherIconNum = parseInt(weatherObj.weatherIcon);
+    let weatherPic = document.createElement('img');
+    if (weatherIconNum <= 4) {
+      weatherPic.src = './resources/weatherIcons/1.png'
+    } else if (weatherIconNum <= 6) {
+      weatherPic.src = './resources/weatherIcons/2.png'
+    } else if (weatherIconNum <= 11) {
+      weatherPic.src = './resources/weatherIcons/3.png'
+    } else if (weatherIconNum <= 18) {
+      weatherPic.src = './resources/weatherIcons/4.png'
+    } else if (weatherIconNum <= 29) {
+      weatherPic.src = './resources/weatherIcons/5.png'
+    };
+    weatherPic.classList.add('weather-pic');
+    weatherAndIcon.appendChild(weatherPic);
+
+    let weatherText = document.createElement('h5');
+    weatherText.innerText = `${weatherObj.weatherText}`;
+    weatherAndIcon.appendChild(weatherText);
+
+    let tempText = document.createElement('h5');
+    tempText.innerText = `${weatherObj.temp} Farenheit`;
+    tempAndPrecip.appendChild(tempText);
+
+    if (weatherObj.precipitationType) {
+      let precipitationText = document.createElement('h5');
+      precipitationText.innerText = `${weatherObj.precipitationType}`;
+      tempAndPrecip.appendChild(precipitationText);
+    }
+
+  }
