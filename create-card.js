@@ -33,10 +33,13 @@ list.addEventListener(
 );
 */
 
+import { handleTaskDelete, handleTaskEdit } from "./CRUD-funcs.js";
+
 // When the "Add To List" button is clicked, a new list item is populated on the left container
-function newElement() {
+export function createTask(taskObj) {
   const li = document.createElement("li");
-  const inputValue = document.getElementById("userInput").value;
+  li.setAttribute('id', taskObj._id);
+  const inputValue = taskObj.task;
   const sym = document.createTextNode(inputValue);
   li.appendChild(sym);
   if (inputValue === "") {
@@ -46,16 +49,44 @@ function newElement() {
   }
   document.getElementById("userInput").value = "";
 
-  const span = document.createElement("span");
-  const txt = document.createTextNode("\u2715");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
+  //create edit button
+  const editButton = document.createElement('button');
+  editButton.className = "edit";
+  editButton.innerText = 'Edit';
+  editButton.addEventListener('click', handleEditButton);
+  li.appendChild(editButton);
 
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function () {
-      const div = this.parentElement;
-      div.style.display = "none";
-    };
-  }
+  //creates delete button
+  const deleteButton = document.createElement("button");
+  const txt = document.createTextNode("\u2715");
+  deleteButton.className = "delete";
+  deleteButton.addEventListener('click', handleDOMDelete);
+  deleteButton.appendChild(txt);
+  li.appendChild(deleteButton);
+
 }
+
+function handleDOMDelete(eventObj) {
+  //remove from mongoDB
+  let taskID = eventObj.target.parentElement.id;
+  console.log(taskID);
+  handleTaskDelete(taskID);
+
+  //remove from list
+  const removeButton = eventObj.target;
+  const container = removeButton.parentElement;
+  container.remove();
+}
+
+function handleEditButton(eventObj) {
+  let edit = prompt('how would you like to change your task?');
+  
+  //edit MongoDB
+  let taskID = eventObj.target.parentElement.id;
+  console.log(taskID);
+  handleTaskEdit(taskID, edit);
+
+  //edit DOM list
+  console.log(eventObj.target.parentElement.innerText);
+};
+

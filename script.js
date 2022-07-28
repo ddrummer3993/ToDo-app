@@ -1,3 +1,4 @@
+import { handleFormSubmit, handleDOMLoad } from './CRUD-funcs.js';
 
 //create event listener for onDOM load - GET request.
 document.addEventListener('DOMContentLoaded', () => {
@@ -5,6 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 //on Form submit: grab and store user input to mongoDB
-const taskForm = document.querySelector('todosInput_form');
+const taskForm = document.querySelector('#todosInput_form');
 taskForm.addEventListener("submit", handleFormSubmit)
 

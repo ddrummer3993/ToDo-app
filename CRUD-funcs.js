@@ -1,3 +1,5 @@
+import { createTask } from './create-card.js';
+
 //Heroku API URL
 const URL = 'https://todo-app-api-dd.herokuapp.com/toDo'
 
@@ -5,12 +7,13 @@ const URL = 'https://todo-app-api-dd.herokuapp.com/toDo'
 export function handleFormSubmit(eventObj) {
     eventObj.preventDefault();
 
-    let itemNumber = document.querySelector(/* GET ID FORM NEW INPUT */).value;
-    let taskName = document.querySelector('#to_dos').value; 
-    // TODO - CHANGE ID VALUE ON TASK INPUT
+    //TODO - decide on how to prioritize tasks, use that in newEntry variable
+
+    //let itemNumber = document.querySelector(/* GET ID FroM NEW INPUT */).value;
+    let taskName = document.querySelector('#userInput').value; 
 
     let newEntry = {
-        itemNum: itemNumber,
+        //itemNum: itemNumber,
         task: taskName
     }
 
@@ -24,8 +27,10 @@ export function handleFormSubmit(eventObj) {
     .then(res => res.json())
     .then(data => {
         console.log(data);
+        let entryID = data.insertedId;
+        newEntry._id = entryID;
+        createTask(newEntry);
     })
-
 };
 
 //handleDOMLoad function: handles the READ/GET request to back end at the DOM load to load the inital daily todo list
@@ -33,20 +38,20 @@ export function handleDOMLoad() {
     return fetch(URL)
     .then(resp => resp.json())
     .then(data => {
+        //TODO - put in priority order function
         console.log(data);
+        data.forEach(taskObj => createTask(taskObj))
     });
-}
+};
 
 //handleTaskEdit function: handles UPDATE/PUT request to back end to update a current ToDo task on the list
-export function handleTaskEdit() {
-    //TODO - find way to prompt user for edit changes, grab those changes via ID's. also grab the tasks itemNum
-    itemNumber = '1';
-
-    //TODO - make new obj using user inputs
+export function handleTaskEdit(taskID, updatedtask) {
     
-    let updatedEntry = {}
+    let updatedEntry = {
+        task: updatedtask
+    }
 
-    fetch(URL + `/${itemNumber}`, {
+    fetch(URL + `/${taskID}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -56,17 +61,14 @@ export function handleTaskEdit() {
     .then(resp => resp.json())
     .then(data => {
         console.log(data);
-    });
-    
-}
+    }); 
+};
 
 //handleTaskDelete function: handles DELETE/DELETE request to back end when the delete task button is clicked on a specific task.
-export function handleTaskDelete() {
+export function handleTaskDelete(taskID) {
     //TODO - upon clicking the delete button on spcific task, grab that tasks itemNum;
 
-    itemNumber = '1';
-
-    fetch(URL + `/${itemNumber}`, {
+    fetch(URL + `/${taskID}`, {
         method: 'DELETE'
     });
-}
+};
