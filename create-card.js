@@ -44,7 +44,7 @@ export function createTask(taskObj) {
 
 function handleDOMDelete(eventObj) {
   //remove from mongoDB
-  let taskID = eventObj.target.parentElement.id;
+  let taskID = eventObj.target.parentElement.parentElement.id;
   console.log(taskID);
   handleTaskDelete(taskID);
 
