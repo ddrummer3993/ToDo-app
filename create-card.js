@@ -58,7 +58,7 @@ function handleEditButton(eventObj) {
   let edit = prompt("how would you like to change your task?");
 
   //edit MongoDB
-  let taskID = eventObj.target.parentElement.id;
+  let taskID = eventObj.target.parentElement.parentElement.id;
   console.log(taskID);
   handleTaskEdit(taskID, edit);
   eventObj.target.parentElement.parentElement.children[0].innerText = edit;
