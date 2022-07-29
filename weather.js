@@ -61,7 +61,7 @@ function appendWeather(weatherObj) {
   const dateTimeContainer = document.querySelector("#date-time-container");
   console.log(weatherObj);
 
-  let cityState = document.createElement("h4");
+  let cityState = document.createElement("h5");
   cityState.innerText = `${weatherObj.city}, ${weatherObj.state}`;
   let clock = document.getElementById("clock");
   dateTimeContainer.insertBefore(cityState, clock);
